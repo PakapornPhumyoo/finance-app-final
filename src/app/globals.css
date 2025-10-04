@@ -1,26 +1,249 @@
+/* src/app/globals.css */
 @import "tailwindcss";
 
+/* 🎨 ธีมสีชมพูหมูน้อย */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --primary: #ff85a2;
+  --primary-hover: #ff6b9d;
+  --secondary: #fff0f5;
+  --accent: #ffb6c1;
+  --background: #fffafc;
+  --foreground: #2d3748;
+  --card: #ffffff;
+  --border: #ffd1dc;
+  --success: #48bb78;
+  --warning: #ed8936;
+  --danger: #f56565;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inter', 'Sukhumvit Set', sans-serif;
+  line-height: 1.6;
+}
+
+/* Gradient Background */
+.gradient-bg {
+  background: linear-gradient(135deg, #fffafc 0%, #fff0f5 50%, #ffe4ec 100%);
+}
+
+.pig-gradient {
+  background: linear-gradient(135deg, #ff85a2, #ffb6c1, #ffd1dc);
+}
+
+/* Glassmorphism Effect */
+.glass {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+/* Card Styles */
+.card-modern {
+  background: var(--card);
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--border);
+  transition: all 0.3s ease;
+}
+
+.card-modern:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* Button Styles */
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, var(--primary-hover), var(--primary));
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255, 133, 162, 0.3);
+}
+
+.btn-secondary {
+  background: var(--secondary);
+  color: var(--primary);
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+  background: var(--primary);
+  color: white;
+}
+
+/* Pig Icon Animation */
+@keyframes pigBounce {
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-5px) rotate(5deg);
+  }
+}
+
+.pig-icon {
+  animation: pigBounce 3s ease-in-out infinite;
+}
+
+/* Custom Shapes */
+.pig-shape {
+  position: relative;
+  overflow: hidden;
+}
+
+.pig-shape::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(255, 182, 193, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+/* Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* Grid Layout Improvements */
+.dashboard-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .card-modern {
+    padding: 1rem;
+    border-radius: 1rem;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-hover);
+}
+
+/* เพิ่มใน src/app/globals.css */
+
+/* Navbar Animations */
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.navbar-slide {
+  animation: slideDown 0.5s ease-out;
+}
+
+/* Glassmorphism Effect */
+.glass-navbar {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Smooth transitions */
+.nav-item-transition {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hover effects */
+.nav-hover-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-hover-effect::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.5s;
+}
+
+.nav-hover-effect:hover::before {
+  left: 100%;
+}
+
+/* เพิ่มใน src/app/globals.css */
+
+/* Custom Swing Animation */
+@keyframes swing {
+  0%, 100% { 
+    transform: rotate(0deg); 
+  }
+  25% { 
+    transform: rotate(5deg); 
+  }
+  75% { 
+    transform: rotate(-5deg); 
+  }
+}
+
+.animate-swing {
+  animation: swing 3s ease-in-out infinite;
 }
