@@ -172,7 +172,23 @@ const ReportsPage = () => {
     ],
   };
 
-  const doughnutOptions: ChartOptions<'doughnut'> = {
+  // Doughnut Chart Configuration for Income (แก้ไข title)
+  const incomeDoughnutData = {
+    labels: incomeByCategory.labels,
+    datasets: [
+      {
+        data: incomeByCategory.data,
+        backgroundColor: [
+          '#10B981', '#34D399', '#6EE7B7', '#A7F3D0', '#065F46', '#047857', '#059669', '#10B981',
+        ],
+        borderColor: 'white',
+        borderWidth: 3,
+        hoverOffset: 15,
+      },
+    ],
+  };
+
+  const expenseDoughnutOptions: ChartOptions<'doughnut'> = {
     responsive: true,
     plugins: {
       legend: {
@@ -200,20 +216,32 @@ const ReportsPage = () => {
     cutout: '60%',
   };
 
-  // Doughnut Chart Configuration for Income
-  const incomeDoughnutData = {
-    labels: incomeByCategory.labels,
-    datasets: [
-      {
-        data: incomeByCategory.data,
-        backgroundColor: [
-          '#10B981', '#34D399', '#6EE7B7', '#A7F3D0',
-        ],
-        borderColor: 'white',
-        borderWidth: 3,
-        hoverOffset: 15,
+  const incomeDoughnutOptions: ChartOptions<'doughnut'> = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'bottom',
+        labels: {
+          font: {
+            size: 12,
+            family: 'Inter',
+          },
+          color: '#4B5563',
+          padding: 20,
+        },
       },
-    ],
+      title: {
+        display: true,
+        text: 'รายรับรวมแยกตามหมวดหมู่', // แก้ไขข้อความตรงนี้
+        font: {
+          size: 16,
+          family: 'Inter',
+          weight: 'bold',
+        },
+        color: '#1F2937',
+      },
+    },
+    cutout: '60%',
   };
 
   return (
@@ -300,21 +328,21 @@ const ReportsPage = () => {
               </CardContent>
             </Card>
 
-            {/* Expense Doughnut Chart */}
+            {/* Income Doughnut Chart - แก้ไขเป็นรายรับ */}
             <Card>
               <CardContent className="p-6">
-                <Doughnut data={expenseDoughnutData} options={doughnutOptions} />
+                <Doughnut data={incomeDoughnutData} options={incomeDoughnutOptions} />
               </CardContent>
             </Card>
           </div>
 
-          {/* Income Distribution and Budget Status */}
+          {/* Expense Distribution and Budget Status */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Income Distribution */}
-            {incomeByCategory.labels.length > 0 && (
+            {/* Expense Distribution */}
+            {expenseByCategory.labels.length > 0 && (
               <Card>
                 <CardContent className="p-6">
-                  <Doughnut data={incomeDoughnutData} options={doughnutOptions} />
+                  <Doughnut data={expenseDoughnutData} options={expenseDoughnutOptions} />
                 </CardContent>
               </Card>
             )}
